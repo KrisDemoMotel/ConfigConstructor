@@ -24,7 +24,7 @@ jobs:
             echo "Constructing the new configuration."
             cp base.yml .circleci/nextconfig.yml
 
-            printf "\n\n jobs:" > .circleci/nextconfig.yml
+            printf "\n\n jobs:" >> .circleci/nextconfig.yml
 
             echo "Adding spaces to job file."
             sed 's/^/  /' commonjob.yml > insert.yml
@@ -32,7 +32,7 @@ jobs:
             sed -i '$rcommonjob.yml' .circleci/nextconfig.yml
 
             echo "And repeat this for all jobs you want to insert, then..."
-            printf "\n\n workflows:" > .circleci/nextconfig.yml
+            printf "\n\n workflows:" >> .circleci/nextconfig.yml
             
             echo "Adding spaces to workflow file."
             sed 's/^/  /' commonworkflow.yml > insert.yml
