@@ -1,0 +1,47 @@
+version: 2.1
+
+setup: true
+
+orbs:
+  continuation: circleci/continuation@0.3.1
+
+jobs:
+  startSetup:
+    docker:
+      - image: cimg/base:stable
+    resource_class: small
+    steps:
+      - checkout
+      
+      - run: 
+          name: Use this step to determine what is going to happen next, and what configuration/s to include.
+          command: |
+            if [ 1 == 1 ]; 
+            then 
+              echo "logic goes here"; 
+            fi
+
+            echo "Constructing the new configuration."
+            cp base.yml .circleci/nextconfig.yml
+
+            printf "\n\n jobs:" > .circleci/nextconfig.yml
+
+            echo "Adding spaces to job file."
+            sed '/s/^/  /' commonjob.yml > insert.yml
+            echo "Inserting job/s into config file."
+            sed -i '$rcommonjob.yml' .circleci/nextconfig.yml
+
+            echo "And repeat this for all jobs you want to insert, then..."
+            printf "\n\n workflows:" > .circleci/nextconfig.yml
+            
+            echo "Adding spaces to workflow file."
+            sed '/s/^/  /' commonworkflow.yml > insert.yml
+            echo "Inserting workflow/s into config file."
+            sed -i '$rcommonworkflow.yml' .circleci/nextconfig.yml
+
+      - continuation/continue:
+          configuration_path: .circleci/nextconfig.yml
+workflows:
+  deploycheck:
+    jobs:
+      - startSetup
