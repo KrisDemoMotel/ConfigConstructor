@@ -32,7 +32,7 @@ jobs:
             sed -i '$rinsert.yml' .circleci/nextconfig.yml
 
             echo "And repeat this for all jobs you want to insert, then..."
-            printf "\n\n workflows:" >> .circleci/nextconfig.yml
+            printf "\n\nworkflows:" >> .circleci/nextconfig.yml
             
             echo "Adding spaces to workflow file."
             sed 's/^/  /' commonworkflow.yml > insert.yml
