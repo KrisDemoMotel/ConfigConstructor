@@ -18,7 +18,7 @@ jobs:
           command: |
             if [ 1 == 1 ]; 
             then 
-              echo "logic goes here"; 
+              echo "logic goes here";
             fi
 
             echo "Constructing the new configuration."
@@ -27,7 +27,7 @@ jobs:
             printf "\n\n jobs:" > .circleci/nextconfig.yml
 
             echo "Adding spaces to job file."
-            sed '/s/^/  /' commonjob.yml > insert.yml
+            sed 's/^/  /' commonjob.yml > insert.yml
             echo "Inserting job/s into config file."
             sed -i '$rcommonjob.yml' .circleci/nextconfig.yml
 
@@ -35,7 +35,7 @@ jobs:
             printf "\n\n workflows:" > .circleci/nextconfig.yml
             
             echo "Adding spaces to workflow file."
-            sed '/s/^/  /' commonworkflow.yml > insert.yml
+            sed 's/^/  /' commonworkflow.yml > insert.yml
             echo "Inserting workflow/s into config file."
             sed -i '$rcommonworkflow.yml' .circleci/nextconfig.yml
 
