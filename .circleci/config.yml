@@ -38,6 +38,11 @@ jobs:
             sed 's/^/  /' commonworkflow.yml > insert.yml
             echo "Inserting workflow/s into config file."
             sed -i '$rcommonworkflow.yml' .circleci/nextconfig.yml
+      
+      - run:
+          name: Confirm content of the new configuration file.
+          command: |
+            cat .circleci/nextconfig.yml
 
       - continuation/continue:
           configuration_path: .circleci/nextconfig.yml
