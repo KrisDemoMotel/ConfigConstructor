@@ -1,3 +1,5 @@
+#Define Jobs in here. The extra 2 lines of indent is handled as part of constructing the config.
+
 common:
   docker:
     - image: cimg/base:stable
@@ -6,6 +8,6 @@ common:
     - checkout
     
     - run: 
-        name: Use this step to determine what is going to happen next, and what configuration/s to include.
+        name: This is the common workflow. Do its things!
         command: |
           echo "hi!"

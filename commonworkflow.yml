@@ -1,3 +1,5 @@
+#Define workflows in here. The extra 2 lines of indent is handled as part of constructing the config.
+
 common:
   jobs:
     - common
